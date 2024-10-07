@@ -9,7 +9,7 @@ const links = [
     { label: "Page 3", href: "/" },
 ]
 async function auth(){
-    const staticData = await fetch(`api/auth`)
+    window.location.href = 'api/auth'; // This redirects the user to the GitHub OAuth page
 }
 export default function Nav() {
     const {theme, setTheme} = useTheme()
