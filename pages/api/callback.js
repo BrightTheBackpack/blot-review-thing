@@ -29,7 +29,7 @@ try {
     if (tokenData.error) {
     return res.status(500).json({ error: tokenData.error });
     }
-
+    console.log(tokenData)
     // Token received, you can now use it to make authenticated requests to GitHub API
     res.setHeader('Set-Cookie', cookie.serialize('access_token', tokenData, {
         httpOnly: true, // Not accessible via JavaScript
@@ -37,10 +37,12 @@ try {
         maxAge: 60 * 60 * 24, // 1 day
         path: '/', // Cookie is available across the entire site
     }));
+    console.log("cookies set")
     
 
     // Redirect or respond with a success message
     res.status(200).json({ message: 'Token stored in cookie' });
+    console.log("redirecting...")
     window.location.href = ''
 
 } catch (error) {
