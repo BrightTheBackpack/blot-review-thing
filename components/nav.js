@@ -12,13 +12,22 @@ const links = [
 async function auth(){
     window.location.href = 'api/auth'; // This redirects the user to the GitHub OAuth page
 }
+const getCookie = (name) => {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+};
 export default function Nav() {
     const {theme, setTheme} = useTheme()
     useEffect(() => {
-        const cookies = cookie.parse(req.headers.cookie || '');
-        const user = cookies.username;
+        document.cookie = cookie.serialize('test', 'test', {
+            maxAge: 60 * 60 * 24, // 1 day
+            path: '/', // Cookie is available across the entire site
+        });
+        
+        const cookies = getCookie("username")
 
-       console.log(user, " username")
+       console.log(cookies, " username")
         console.log('Made by Sarthak Mohanty. All Rights Reserved. Want to hire me? https://srtk.me')
         
     })
