@@ -14,7 +14,12 @@ async function auth(){
 export default function Nav() {
     const {theme, setTheme} = useTheme()
     useEffect(() => {
+        const cookies = cookie.parse(req.headers.cookie || '');
+        const user = cookies.username;
+
+       console.log(user, " username")
         console.log('Made by Sarthak Mohanty. All Rights Reserved. Want to hire me? https://srtk.me')
+        
     })
     return (
         <nav className="dark:text-white">

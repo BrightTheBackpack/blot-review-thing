@@ -31,7 +31,18 @@ try {
     }
 
     // Token received, you can now use it to make authenticated requests to GitHub API
-    res.status(200).json({ token: tokenData.access_token });
+    res.setHeader('Set-Cookie', cookie.serialize('access_token', tokenData, {
+        httpOnly: true, // Not accessible via JavaScript
+        secure: process.env.NODE_ENV === 'production', // Use secure cookies in production
+        maxAge: 60 * 60 * 24, // 1 day
+        path: '/', // Cookie is available across the entire site
+    }));
+    
+
+    // Redirect or respond with a success message
+    res.status(200).json({ message: 'Token stored in cookie' });
+    window.location.href = ''
+
 } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Failed to get access token' });
