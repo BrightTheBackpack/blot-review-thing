@@ -41,7 +41,7 @@ try {
     
 
     // Redirect or respond with a success message
-    res.status(200).json({ message: 'Token stored in cookie' });
+    res.redirect(302, '/');    
     console.log("redirecting...")
     window.location.href = ''
 
