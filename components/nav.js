@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { useEffect } from 'react'
 import { CgDarkMode } from 'react-icons/cg'
 import {useTheme} from 'next-themes'
+import cookie from 'cookie';
 
 const links = [
     { label: "Page 1", href: "/" },
